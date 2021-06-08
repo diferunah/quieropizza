@@ -12,11 +12,25 @@ namespace QuieroPizza.Web.Controllers
         // GET: Productos
         public ActionResult Index()
         {
-            var producto = new ProductoModel();
-            producto.Id = 1;
-            producto.Descripcion = "Pizza 6 quesos";
+            var producto1 = new ProductoModel();
+            producto1.Id = 1;
+            producto1.Descripcion = "Pizza 6 quesos";
 
-            return View(producto);
+            var producto2 = new ProductoModel();
+            producto2.Id = 2;
+            producto2.Descripcion = "Pizza 7 Estaciones";
+
+            var producto3 = new ProductoModel();
+            producto3.Id = 3;
+            producto3.Descripcion = "Pizza de Jamón y Queso";
+
+            var listadeProductos = new List<ProductoModel>();
+            listadeProductos.Add(producto1);
+            listadeProductos.Add(producto2);
+            listadeProductos.Add(producto3);
+
+
+            return View(listadeProductos);
         }
     }
 }
