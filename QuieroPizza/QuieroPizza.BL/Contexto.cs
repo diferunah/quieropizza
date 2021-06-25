@@ -23,5 +23,6 @@ namespace QuieroPizza.BL
         }
 
         public DbSet<Producto> Productos { get; set; } //crea una tabla en base producto
+        public DbSet<Categoria> Categorias { get; set; } //crea una tabla
     }
 }
