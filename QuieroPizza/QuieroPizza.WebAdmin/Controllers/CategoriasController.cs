@@ -31,11 +31,23 @@ namespace QuieroPizza.WebAdmin.Controllers
         }
 
         [HttpPost] //atributo que envia de regreso
-        public ActionResult Crear(Categoria producto) //recibe un producto de regreso
+        public ActionResult Crear(Categoria categoria) //recibe un producto de regreso
         {
-            _categoriasBL.GuardarCategoria(producto); // Guarda el producto creado por el usuario
+            if (ModelState.IsValid)
+            {
+                if (categoria.Descripcion != categoria.Descripcion.Trim())
+                {
+                    ModelState.AddModelError("Descripcion", "La descripción no puede contener espacio al inicio o al final");
+                    return View(categoria);
+                }
 
-            return RedirectToAction("Index"); //Nos redireciona a l a vista index
+                _categoriasBL.GuardarCategoria(categoria); // Guarda el producto creado por el usuario
+
+                return RedirectToAction("Index"); //Nos redireciona a l a vista index
+            }
+
+            return View(categoria);
+            
         }
 
         public ActionResult Editar(int id)
@@ -45,10 +57,22 @@ namespace QuieroPizza.WebAdmin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Editar(Categoria producto)
+        public ActionResult Editar(Categoria categoria)
         {
-            _categoriasBL.GuardarCategoria(producto);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                if (categoria.Descripcion != categoria.Descripcion.Trim())
+                {
+                    ModelState.AddModelError("Descripcion", "La descripción no puede contener espacio al inicio o al final");
+                    return View(categoria);
+                }
+
+                _categoriasBL.GuardarCategoria(categoria); // Guarda el producto creado por el usuario
+
+                return RedirectToAction("Index"); //Nos redireciona a l a vista index
+            }
+
+            return View(categoria);
         }
 
         public ActionResult detalle(int id) //mantenimiento a detalle

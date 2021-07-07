@@ -19,7 +19,8 @@ namespace QuieroPizza.BL
 
         public List<Producto> ObtenerProductos()
         {
-            ListadeProductos = _contexto.Productos.ToList();
+            ListadeProductos = _contexto.Productos.Include("Categoria").ToList(); //incluye en producto las cateogorias
+                
             return ListadeProductos;
         }
 
@@ -32,8 +33,11 @@ namespace QuieroPizza.BL
             else
             {
                 var productoExistente = _contexto.Productos.Find(producto.Id); //busca en bd el producto existente
+
                 productoExistente.Descripcion = producto.Descripcion;
+                productoExistente.CategoriaId = producto.CategoriaId;
                 productoExistente.Precio = producto.Precio;
+                productoExistente.UrlImagen = producto.UrlImagen; //actualiza la informacion cuando editamos
             }
             
             _contexto.SaveChanges(); //guarda los cambios realizados
