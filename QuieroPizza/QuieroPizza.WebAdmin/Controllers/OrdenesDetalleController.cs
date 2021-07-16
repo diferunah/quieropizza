@@ -18,10 +18,11 @@ namespace QuieroPizza.WebAdmin.Controllers
             _productosBL = new ProductosBL();
         }
         
-        // GET: OrdenDetalle
+        // GET: OrdenesDetalle
         public ActionResult Index(int id)
         {
             var orden = _ordenBL.ObtenerOrden(id);
+            orden.ListadeOrdenDetalle = _ordenBL.ObtenerOrdenDetalle(id);
 
             return View(orden);
         }
@@ -31,7 +32,7 @@ namespace QuieroPizza.WebAdmin.Controllers
             var nuevaOrdenDetalle = new OrdenDetalle(); //crea orden
             nuevaOrdenDetalle.OrdenId = id; //asigna orden al id
 
-            var productos = _productosBL.ObtenerProductos ();
+            var productos = _productosBL.ObtenerProductosActivos();
 
             ViewBag.ProductoId = new SelectList(productos, "Id", "Descripcion"); //obtiene productos para drowdonwlist
 

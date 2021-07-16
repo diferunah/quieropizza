@@ -24,6 +24,13 @@ namespace QuieroPizza.BL
             return ListadeProductos;
         }
 
+        public List<Producto> ObtenerProductosActivos()
+        {
+            ListadeProductos = _contexto.Productos.Include("Categoria").Where(r => r.Activo == true).OrderBy(r => r.Descripcion).ToList();
+
+            return ListadeProductos;
+        }
+
         public void GuardarProducto(Producto producto) //recibe y guarda el producto
         {
             if (producto.Id ==0)

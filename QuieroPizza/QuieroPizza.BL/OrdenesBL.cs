@@ -19,9 +19,7 @@ namespace QuieroPizza.BL
 
         public List<Orden> ObtenerOrdenes()
         {
-            ListadeOrdenes = _contexto.Ordenes
-                .Include("Cliente")
-                .ToList();
+            ListadeOrdenes = _contexto.Ordenes.Include("Cliente").ToList();
 
             return ListadeOrdenes;
         }
@@ -65,10 +63,10 @@ namespace QuieroPizza.BL
 
         public void GuardarOrdenDetalle(OrdenDetalle ordenDetalle)
         {
-            var producto = _contexto.Productos.Find(ordenDetalle.ProductoId);
+            var producto = _contexto.Productos.Find(ordenDetalle.ProductoId); //busca en bd que taer la orden
 
-            ordenDetalle.Precio = producto.Precio;
-            ordenDetalle.Total = ordenDetalle.Cantidad * ordenDetalle.Precio;
+            ordenDetalle.Precio = producto.Precio; //obtener precio
+            ordenDetalle.Total = ordenDetalle.Cantidad * ordenDetalle.Precio; //asigna precio a detalle y realiza el calculo
 
             _contexto.OrdenDetalle.Add(ordenDetalle);
 

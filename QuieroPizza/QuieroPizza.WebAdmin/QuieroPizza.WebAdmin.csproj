@@ -192,6 +192,7 @@
     <Content Include="Views\OrdenDetalle\Index.cshtml" />
     <Content Include="Views\OrdenDetalle\Crear.cshtml" />
     <Content Include="Views\Ordenes\Detalle.cshtml" />
+    <Content Include="Views\OrdenDetalle\Eliminar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
