@@ -32,7 +32,7 @@ namespace QuieroPizza.WebAdmin.Controllers
             var nuevaOrdenDetalle = new OrdenDetalle(); //crea orden
             nuevaOrdenDetalle.OrdenId = id; //asigna orden al id
 
-            var productos = _productosBL.ObtenerProductosActivos();
+            var productos = _productosBL.ObtenerProductosActivos(); //obtiene solo los productos activos
 
             ViewBag.ProductoId = new SelectList(productos, "Id", "Descripcion"); //obtiene productos para drowdonwlist
 
@@ -54,7 +54,7 @@ namespace QuieroPizza.WebAdmin.Controllers
                 return RedirectToAction("Index", new { id = ordenDetalle.OrdenId });
             }
 
-            var productos = _productosBL.ObtenerProductos();
+            var productos = _productosBL.ObtenerProductosActivos(); //obtiene solo productos activos
 
             ViewBag.ProductoId = new SelectList(productos, "Id", "Descripcion");
 

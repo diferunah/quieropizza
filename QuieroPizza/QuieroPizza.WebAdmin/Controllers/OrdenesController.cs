@@ -28,7 +28,7 @@ namespace QuieroPizza.WebAdmin.Controllers
         public ActionResult Crear()
         {
             var nuevaOrden = new Orden();
-            var clientes = _clientesBL.ObtenerClientesActivos();
+            var clientes = _clientesBL.ObtenerClientesActivos(); //crea ordenes para clientes activos 
 
             ViewBag.ClienteId = new SelectList(clientes, "Id", "Nombre");
 
@@ -61,7 +61,7 @@ namespace QuieroPizza.WebAdmin.Controllers
         public ActionResult Editar(int id)
         {
             var orden = _ordenesBL.ObtenerOrden(id);
-            var clientes = _clientesBL.ObtenerClientesActivos();
+            var clientes = _clientesBL.ObtenerClientesActivos(); //utilizamos solo los clientes activos
 
             ViewBag.ClienteId = new SelectList(clientes, "Id", "Nombre", orden.ClienteId);
 
@@ -84,7 +84,7 @@ namespace QuieroPizza.WebAdmin.Controllers
                 return RedirectToAction("Index");
             }
 
-            var clientes = _clientesBL.ObtenerClientesActivos();
+            var clientes = _clientesBL.ObtenerClientesActivos(); //obtiene clientes activos
 
             ViewBag.ClienteId = new SelectList(clientes, "Id", "Nombre", orden.ClienteId);
 

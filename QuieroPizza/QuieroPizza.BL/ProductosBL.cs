@@ -19,13 +19,15 @@ namespace QuieroPizza.BL
 
         public List<Producto> ObtenerProductos()
         {
-            ListadeProductos = _contexto.Productos.Include("Categoria").ToList(); //incluye en producto las cateogorias
-                
+            //incluye en producto las cateogorias y las ordena por categorias y descripcion
+            ListadeProductos = _contexto.Productos.Include("Categoria").OrderBy(r => r.Categoria.Descripcion).ThenBy(r => r.Descripcion).ToList(); 
+
             return ListadeProductos;
         }
 
-        public List<Producto> ObtenerProductosActivos()
+        public List<Producto> ObtenerProductosActivos() //obtiene todos los productos que esten activos
         {
+            //ordena os productos por descripcion
             ListadeProductos = _contexto.Productos.Include("Categoria").Where(r => r.Activo == true).OrderBy(r => r.Descripcion).ToList();
 
             return ListadeProductos;

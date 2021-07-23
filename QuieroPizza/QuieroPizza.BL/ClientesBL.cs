@@ -19,12 +19,13 @@ namespace QuieroPizza.BL
 
         public List<Cliente> ObtenerClientes()
         {
+            //ordena clientes por nombre
             ListadeClientes = _contexto.Clientes.OrderBy(r => r.Nombre).ToList();
 
             return ListadeClientes;
         }
 
-        public List<Cliente> ObtenerClientesActivos()
+        public List<Cliente> ObtenerClientesActivos() //obtiene los clientes que esten activos
         {
             ListadeClientes = _contexto.Clientes.Where(r => r.Activo == true).OrderBy(r => r.Nombre).ToList();
 
